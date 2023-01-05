@@ -1,0 +1,104 @@
+package projectPackage;
+	public class Hello_java {
+		public static void main(String[] args){
+			Sword s = new Sword();
+			s.name = "Fire sword";
+			s.damage=10;
+			
+			Sword rand=new Sword();
+			rand.name="alea";
+			
+			blaster b=new blaster();
+			b.name="Blaster M-640";
+			b.damage=40;
+			b.portee=39.6;
+			
+			blaster rdv=new blaster();
+			rdv.name="ouch";
+			
+			
+			Hero h = new Hero();
+			h.name="Minato";
+			h.hp=100;
+			h.sword=s;
+			h.blast=b;
+			
+			Matango m = new Matango();
+			m.name = "Old spirit";
+			m.hp= 100;
+			m.mat_damage=15;
+			
+			SuperHero sh = new SuperHero();
+			sh.name="Mouloud";
+			sh.run();
+			h.run();
+			
+			boolean loop = true ;
+			while (loop == true) {
+				System.out.println("Choose a weapon : Sword (1), Blaster (2)");
+				int weapon = new java.util.Scanner(System.in).nextInt();
+				
+				if (weapon == 1) {
+					System.out.println(h.name +" is now equipped with "+h.sword.name);
+					h.attack_sword();
+					rand.damage=new java.util.Random().nextInt(20);
+					int aie=s.damage + rand.damage;
+					m.hp = m.hp -=aie;
+					System.out.println("The ennemy takes "+aie+" damages.");
+					System.out.println(m.name+" still has "+m.hp+" hp !");
+					
+						if (m.hp<=0) {
+							System.out.println(m.name + " is dead. Congratulations !");
+							loop=false;
+						} else {
+							m.attaque();
+							m.mat_rand=new java.util.Random().nextInt(10);
+							int aietrois =m.mat_damage + m.mat_rand;
+							h.hp=h.hp -=aietrois;
+							System.out.println("That hurts ! "+ h.name+" takes "+aietrois+" damages.");
+							if (h.hp<=0) {
+								System.out.println(h.hp);
+								System.out.println(h.name+" is out of hp ! GAMEOVER");
+								loop=false;
+								break;
+							}else {
+								System.out.println(h.name+" still has "+h.hp+" hp !");
+								loop=true;
+							}
+						}
+					
+				} else if (weapon ==2) {
+					System.out.println(h.name +" is now equipped with "+h.blast.name);
+					h.attack_blaster();
+					rdv.damage = new java.util.Random().nextInt(10);
+					int aiedeux= rdv.damage +b.damage;
+					m.hp = m.hp-= aiedeux;
+					System.out.println("The ennemy takes " + aiedeux+ " damages.");
+					System.out.println(m.name+" still has "+m.hp+" hp !");
+						if (m.hp<=0) {
+							System.out.println(m.name + " is dead. Congratulations !");
+							loop=false;
+						} else {
+							m.attaque();
+							m.mat_rand=new java.util.Random().nextInt(30);
+							int aietrois =m.mat_damage + m.mat_rand;
+							h.hp=h.hp -=aietrois;
+							System.out.println("That hurts ! "+ h.name+" takes "+aietrois+" damages.");
+							if (h.hp<=0) {
+								System.out.println(h.hp);
+								System.out.println(h.name+" is out of hp ! GAMEOVER");
+								loop=false;
+								break;
+							}else {
+								System.out.println(h.name+" still has "+h.hp+" hp !");
+								loop=true;
+							}
+						}
+					
+				} else {
+					System.out.println("Incorrect input, try again");
+					loop = true;
+				}
+			}
+		}
+	}
