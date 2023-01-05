@@ -1,104 +1,141 @@
 package projectPackage;
 	public class Hello_java {
 		public static void main(String[] args){
-			Sword s = new Sword();
-			s.name = "Fire sword";
-			s.damage=10;
-			
-			Sword rand=new Sword();
-			rand.name="alea";
-			
-			blaster b=new blaster();
-			b.name="Blaster M-640";
-			b.damage=40;
-			b.portee=39.6;
-			
-			blaster rdv=new blaster();
-			rdv.name="ouch";
-			
-			
-			Hero h = new Hero();
-			h.name="Minato";
-			h.hp=100;
-			h.sword=s;
-			h.blast=b;
-			
+					
 			Matango m = new Matango();
 			m.name = "Old spirit";
 			m.hp= 100;
-			m.mat_damage=15;
+			m.mp=100;
 			
-			SuperHero sh = new SuperHero();
-			sh.name="Mouloud";
-			sh.run();
-			h.run();
+			Wizard w = new Wizard();
+			w.name = "Aerith";
+			w.hp= 90;
+			w.mp=60;
 			
-			boolean loop = true ;
-			while (loop == true) {
-				System.out.println("Choose a weapon : Sword (1), Blaster (2)");
-				int weapon = new java.util.Scanner(System.in).nextInt();
+			Warrior wawa = new Warrior();
+			wawa.name="Phenicia";
+			wawa.hp=120;
+			wawa.strength=40;
+			
+			Item_life potion=new Item_life();
+			potion.name="Potion";
+			potion.restore = 10;
+			potion.number_in_bag= 1;
+			potion.price=100;
+			
+			boolean general_hp = true;
+			while(general_hp==true) {
 				
-				if (weapon == 1) {
-					System.out.println(h.name +" is now equipped with "+h.sword.name);
-					h.attack_sword();
-					rand.damage=new java.util.Random().nextInt(20);
-					int aie=s.damage + rand.damage;
-					m.hp = m.hp -=aie;
-					System.out.println("The ennemy takes "+aie+" damages.");
-					System.out.println(m.name+" still has "+m.hp+" hp !");
+				boolean fight = true;
+				while (fight == true) {
 					
-						if (m.hp<=0) {
-							System.out.println(m.name + " is dead. Congratulations !");
-							loop=false;
-						} else {
-							m.attaque();
-							m.mat_rand=new java.util.Random().nextInt(10);
-							int aietrois =m.mat_damage + m.mat_rand;
-							h.hp=h.hp -=aietrois;
-							System.out.println("That hurts ! "+ h.name+" takes "+aietrois+" damages.");
-							if (h.hp<=0) {
-								System.out.println(h.hp);
-								System.out.println(h.name+" is out of hp ! GAMEOVER");
-								loop=false;
-								break;
+					boolean wawa_fight = true;
+					while (wawa_fight == true) {
+						if (wawa.hp<=0) {
+							wawa_fight=false;
+						}else {
+							wawa_fight = true;
+							System.out.println("1- Attack, 2-SWORD OF LIGHT");
+							int wawa_choice =new java.util.Scanner(System.in).nextInt();
+							if (wawa_choice == 1) {
+								wawa.attack(m);
+								wawa_fight=false;
+							} else if (wawa_choice == 2 && wawa.strength>=20) {
+								wawa.sword_of_light(m);
+								wawa_fight=false;
 							}else {
-								System.out.println(h.name+" still has "+h.hp+" hp !");
-								loop=true;
+								System.out.println("Not enough strength !");
+								wawa_fight=true;
+							}
+							if (m.hp<=0) {
+								System.out.println(m.name +" is defeated !");
+								general_hp = false;
+								System.exit(0);
+							}
+						}
+						
+					}
+					
+						boolean matango_fight = true;
+						while (matango_fight == true) {
+							int attack_rand = new java.util.Random().nextInt(3);
+							if (attack_rand ==0 && wawa.hp>0) {
+								m.monster_attack_warrior(wawa);
+								matango_fight=false;
+							} else if (attack_rand==1 && w.hp>0) {
+								m.monster_attack_wizard(w);
+								matango_fight=false;
+							} else if (attack_rand==2 && m.mp>=20 && wawa.hp>0){
+								m.monster_poison_warrior(wawa);	
+								matango_fight=false;
+							} else if (attack_rand==3 && m.mp>=20 && w.hp>0){
+								m.monster_poison_wizard(w);
+								matango_fight=false;
+						}
+								
+							if (m.hp<=0) {
+								System.out.println(m.name +" is defeated !");
+								general_hp = false;
+								System.exit(0);
+							} else if (w.hp<=0) {
+								System.out.println(w.name+" is dead");
+								matango_fight=false;
+							} else if (wawa.hp<=0 && wawa_fight==false) {
+								System.out.println(wawa.name +" is dead");
+							} else if (w.hp<=0 && wawa.hp<=0) {
+								System.out.println("GAMEOVER");
+								general_hp=false;
+								System.exit(0);
 							}
 						}
 					
-				} else if (weapon ==2) {
-					System.out.println(h.name +" is now equipped with "+h.blast.name);
-					h.attack_blaster();
-					rdv.damage = new java.util.Random().nextInt(10);
-					int aiedeux= rdv.damage +b.damage;
-					m.hp = m.hp-= aiedeux;
-					System.out.println("The ennemy takes " + aiedeux+ " damages.");
-					System.out.println(m.name+" still has "+m.hp+" hp !");
-						if (m.hp<=0) {
-							System.out.println(m.name + " is dead. Congratulations !");
-							loop=false;
-						} else {
-							m.attaque();
-							m.mat_rand=new java.util.Random().nextInt(30);
-							int aietrois =m.mat_damage + m.mat_rand;
-							h.hp=h.hp -=aietrois;
-							System.out.println("That hurts ! "+ h.name+" takes "+aietrois+" damages.");
-							if (h.hp<=0) {
-								System.out.println(h.hp);
-								System.out.println(h.name+" is out of hp ! GAMEOVER");
-								loop=false;
-								break;
-							}else {
-								System.out.println(h.name+" still has "+h.hp+" hp !");
-								loop=true;
-							}
-						}
 					
-				} else {
-					System.out.println("Incorrect input, try again");
-					loop = true;
+						boolean wizard_fight = true;
+						while (wizard_fight ==true) {
+							if (w.hp<=0) {
+								wizard_fight=false;
+							} else {
+								wizard_fight=true;
+								System.out.println("1- Attack, 2-FIREBALL");
+								int w_choice=new java.util.Scanner(System.in).nextInt();
+								if (w_choice == 1) {
+									w.attack(m);
+									wizard_fight = false;
+								} else if (w_choice == 2 && w.mp>=20) {
+									w.fireball(m);
+									wizard_fight=false;
+								} else {
+									System.out.println("INCORRECT INPUT");
+									wizard_fight=true;
+								}
+								
+								if (m.hp<=0) {
+									System.out.println(m.name +" is defeated !");
+									general_hp = false;
+									System.exit(0);
+								}
+							}
+							
+						}
+					if (w.hp <=0 && wawa.hp <=0) {
+						System.out.println("GAMEOVER");
+						general_hp=false;
+						System.exit(0);
+					} else if(m.hp<=0) {
+						System.out.println(m.name +" is defeated !");
+						general_hp = false;
+						System.exit(0);
+					} else {
+						general_hp = true;
+					}
 				}
+					
+				}
+					
+				
 			}
-		}
 	}
+	
+			
+ 
+
