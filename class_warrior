@@ -1,0 +1,23 @@
+package projectPackage;
+public class Warrior extends Character {
+	int strength;
+	public void attack(Matango m) {
+		System.out.println(this.name+" attacks !");
+		System.out.println(m.name+" takes 10 damages 1");
+		m.hp-=10;
+		System.out.println(m.name+ " now has "+m.hp+" HP !");
+	}
+	public void sword_of_light(Matango m) {
+		System.out.println(this.name +" uses SWORD OF LIGHT");
+		System.out.println(m.name +" takes 25 damages !");
+		m.hp -=25;
+		this.strength -= 20;
+		System.out.println(m.name+ " now has "+m.hp+" HP !");
+		System.out.println(this.name+" now has " +this.strength+ " STRENGTH !");
+		
+	}
+	public void heal(Item_life potion) {
+		System.out.println(this.name +" uses "+potion.name+". It restores 10 HP !");
+	}
+}
+
