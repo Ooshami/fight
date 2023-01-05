@@ -1,0 +1,10 @@
+package projectPackage;
+public abstract class Monster {
+	String name;
+	int hp;
+	public void run() {
+			System.out.println(this.name +" runs from the battlefield !");
+	}
+	public abstract void monster_attack_wizard(Wizard w);
+	public abstract void monster_attack_warrior(Warrior wawa);
+}
