@@ -1,0 +1,5 @@
+package projectPackage;
+public abstract class Items {
+	String name;
+	int price;
+}
