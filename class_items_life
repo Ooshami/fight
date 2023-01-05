@@ -1,0 +1,8 @@
+package projectPackage;
+public class Item_life extends Items{
+	String name;
+	int restore;
+	int number_in_bag;
+	int price;
+}
+
