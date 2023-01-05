@@ -1,0 +1,47 @@
+package projectPackage;
+public class Matango extends Monster {
+	String name;
+	int hp;	
+	int mat_damage;
+	int mat_rand;
+	int mp;
+	
+	public void run() {
+		if (this.hp <20) {
+			int run_rand =new java.util.Random().nextInt(5);
+			if (run_rand == 1) {
+				System.out.println(this.name +" runs from the battlefield !");
+			} else {
+				System.out.println(this.name+" tried to run from the battflefield, but failed !");
+			}
+		}
+}
+	
+	public void monster_attack_wizard(Wizard w) {
+		System.out.println(this.name +" attacks !");
+		System.out.println(w.name +"takes 30 damages !");
+		w.hp-=30;
+		System.out.println(w.name+ " now has "+w.hp+" HP !");
+	}
+	public void monster_attack_warrior(Warrior wawa) {
+		System.out.println(this.name +" attacks !");
+		System.out.println(wawa.name +" takes 30 damages !");
+		wawa.hp-=30;
+		System.out.println(wawa.name+ " now has "+wawa.hp+" HP !");
+		}
+	public void monster_poison_wizard(Wizard w) {
+		System.out.println(this.name+" uses POISON on " +w.name);
+		System.out.println(w.name+" takes 40 damages !");
+		w.hp-=40;
+		this.mp-=20;
+		System.out.println(w.name+ " now has "+w.hp+" HP !");
+	}
+	public void monster_poison_warrior(Warrior wawa) {
+		System.out.println(this.name+" uses POISON on " +wawa.name);
+		System.out.println(wawa.name+" takes 40 damages !");
+		wawa.hp-=40;
+		this.mp-=20;
+		System.out.println(wawa.name+ " now has "+wawa.hp+" HP !");
+	}
+}
+
